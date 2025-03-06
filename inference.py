@@ -2,7 +2,7 @@ from pathlib import Path
 
 from ultralytics import YOLO
 
-model_path = Path(__file__).parent / "trained_models" / "yolov11n.onnx"
+model_path = Path(__file__).parent / "trained_models" / "yolov11m.onnx"
 model = YOLO(str(model_path), task="detect")
 
 inference_dataset_location = (
@@ -17,7 +17,6 @@ results_dir.mkdir(parents=True, exist_ok=True)
 results = model(inference_dataset_location, save=True, save_dir=results_dir)
 predict_path = None
 for r in results:
-    r.save(results_dir)
     path = Path(__file__).parent / r.save_dir / Path(r.path).name
     path.replace(results_dir / Path(r.path).name)
     predict_path = Path(r.path)

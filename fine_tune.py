@@ -12,11 +12,11 @@ if __name__ == "__main__":
         print("Please run download_datasets.py first to download the dataset.")
         exit()
 
-    model_size = "l"
+    model_size = "m"
     model = YOLO(f"yolo11{model_size}.pt")
 
     train_results = model.train(
-        data=f"{dataset_location}/data.yaml", epochs=1, imgsz=640, device="0"
+        data=f"{dataset_location}/data.yaml", epochs=50, imgsz=640, device="0"
     )
 
     path = model.export(format="onnx")
