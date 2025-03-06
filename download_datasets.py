@@ -10,8 +10,10 @@ root = Path(__file__).parent
 
 ROBOFLOW_API_KEY = os.getenv("ROBOFLOW_API_KEY")
 rf = Roboflow(api_key=ROBOFLOW_API_KEY)
-project = rf.workspace("hobbys-dmlrg").project("basketball-detection-1mtj3")
-version = project.version(2)
+project = rf.workspace("roboflow-universe-projects").project(
+    "basketball-players-fy4c2"
+)
+version = project.version(16)
 dataset_location = root / "datasets" / "ball_fine_tune"
 if not dataset_location.exists():
     dataset_location.mkdir(parents=True, exist_ok=True)
